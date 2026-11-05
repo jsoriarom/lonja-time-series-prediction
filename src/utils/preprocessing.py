@@ -5,17 +5,14 @@ import pandas as pd
 
 
 def uniform_ffill(
-        data: pd.DataFrame,
-        time_col: str = 'date',
-        freq: str = '7D',
-    ) -> pd.DataFrame:
+    data: pd.DataFrame,
+    freq: str = '7D',
+) -> pd.DataFrame:
     """
     Rellena huecos para que los registros estén separados por intervalos de tiempo uniformes (`freq`).
-    Las filas nuevas toman el último valor conocido (forward fill).
+    Las filas nuevas toman el último valor conocido (forward fill). En índice de `data` es la fecha.
     """
-    df = data.copy()
-    df[time_col] = pd.to_datetime(df[time_col])
-    return df.set_index(time_col).resample(freq).ffill().ffill().reset_index()
+    return data.resample(freq).ffill().ffill()
 
 
 def to_log_retornos(precios: np.ndarray) -> np.ndarray:

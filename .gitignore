@@ -15,6 +15,9 @@ dist/
 # Jupyter notebooks
 .ipynb_checkpoints/
 
+# Datos
+data/
+
 # VS Code
 .vscode/*
 

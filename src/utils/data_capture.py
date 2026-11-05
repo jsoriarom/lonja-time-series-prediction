@@ -116,7 +116,7 @@ def get_prices(
 
     if pivot:
         df['cat'] = df['sex'] + '_' + df['weight'] + '_' + df['fatType']
-        df = df.pivot(index='date', columns='cat', values='price').reset_index()
+        df = df.pivot(index='date', columns='cat', values='price').rename_axis(columns=None).reset_index()
 
     return df.sort_values('date', ignore_index=True)
 
