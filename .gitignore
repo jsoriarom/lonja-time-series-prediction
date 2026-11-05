@@ -17,8 +17,6 @@ dist/
 
 # VS Code
 .vscode/*
-!.vscode/settings.json
-!.vscode/extensions.json
 
 # Herramientas
 .pytest_cache/
