@@ -11,6 +11,7 @@ import numpy as np
 def to_dataset(
     data: np.ndarray,
     window_dim: int,
+    target: int | list[int] | None = None,
 ) -> tuple[np.ndarray, np.ndarray]:
     """
     Divide la serie en ventanas deslizantes de `window_dim` filas.
@@ -21,13 +22,14 @@ def to_dataset(
     y: (n_records, n_cols),
     con n_records = len(data) - window_dim.
     """
+    cols = slice(None) if target is None else np.atleast_1d(target)
 
     x = np.asarray([
         data[i : i+window_dim, :]
         for i in range(len(data) - window_dim)
     ], dtype=np.float32)
 
-    y = np.asarray(data[window_dim:, :], dtype=np.float32)
+    y = np.asarray(data[window_dim:, cols], dtype=np.float32)
 
     return x, y
 
